@@ -1,0 +1,42 @@
+{% extends 'films/base.html' %}
+{% load static %}
+{% block content %}  
+
+  <div id="hero" class="hero d-flex flex-column justify-content-center align-items-center" data-aos="fade" data-aos-delay="1500">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 text-center">
+          <h2>Добро пожаловать на наш сайт.</h2>
+          <p>Вы можете насладиться просмотром широкого выбора фильмов онлайн абсолютно бесплатно.</p>
+          <a href="https://t.me/films_bez" class="btn-get-started">Телеграм канал</a><br><br>
+          <input type="text" class="film_search" id="film_search" placeholder="Поиск..." />
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <main id="main" data-aos="fade" data-aos-delay="1500">
+
+    <div id="gallery " class="gallery">
+      <div class="container-fluid">
+        <div class="row gy-4 justify-content-center">
+            {% for film in films %}
+                <section class="col-xl-3 col-lg-4 col-md-6 film_search" id="{{ film.name }}">
+                    <div class="gallery-item h-100">
+                      {{ film.name }}
+                    <img src="{{ film.image.url }}" class="img-fluid" alt="">
+                    <div class="gallery-links d-flex align-items-center justify-content-center">
+                        <a href="{{ film.image.url }}" title="{{ film.name }} - {{ film.description|truncatechars:200}}" class="glightbox preview-link"><i class="bi bi-arrows-angle-expand"></i></a>
+                        <a href="{% url 'film_detail' film.pk %}" class="details-link"><i class="bi bi-play-fill"></i></a>
+                    </div>
+                    </div>
+                </section>
+            {% endfor %}
+        </div>
+      </div>
+    </div>
+  </main><br>
+
+
+  {% endblock content %}

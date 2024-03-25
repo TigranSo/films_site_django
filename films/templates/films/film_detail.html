@@ -1,0 +1,26 @@
+{% extends 'films/base.html' %}
+{% load static %}
+
+{% block content %}   
+<br><br><br><br>
+  <main class="container mt-4">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h2>{{ films.name }}</h2>
+            <p>{{ films.description }}</p>
+            <p>Категория: {{ films.category }}</p>
+            <p>Рейтинг: {{ films.rating }}</p>
+            <p>
+              {% if films.url_film %}
+                  <video width="100%" height="400" controls>
+                      <source src="{{ films.url_film }}" type="video/mp4">
+                      Ваш браузер не поддерживает видео в формате HTML5.
+                  </video>
+              {% else %}
+                  <p>Видео отсутствует</p>
+              {% endif %}
+            </p>
+        </div>
+    </div>
+  </main>
+{% endblock content %}
